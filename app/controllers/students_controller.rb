@@ -12,6 +12,10 @@ class StudentsController < ApplicationController
     end
   end
 
+  def index
+    @students = Student.search(params[:search])
+  end
+
   def edit
     @student = Student.find(params[:id])
   end
@@ -23,6 +27,8 @@ class StudentsController < ApplicationController
   def index
     @students = Student.all
   end
+
+
 
   def student_params
     params.require(:student).permit(:name, :birthday, :hometown)
