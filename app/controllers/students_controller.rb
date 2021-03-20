@@ -13,7 +13,11 @@ class StudentsController < ApplicationController
   end
 
   def index
-    @students = Student.search(params[:search])
+    if params[:query]
+      @students = Student.search(params[:query])
+    else
+      @students = Student.all
+    end
   end
 
   def edit    
@@ -22,10 +26,6 @@ class StudentsController < ApplicationController
 
   def show
     @student = Student.find(params[:id])
-  end
-
-  def index
-    @students = Student.all
   end
 
 
